@@ -485,7 +485,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (m < 0) { m = 59; h--; }
         if (h < 0) { h = 23; d--; }
         if (d < 0) {
-          el.textContent = "Selesai"; 
+          el.textContent = "Promo Berakhir"; 
         } else {
           el.textContent = [d, h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
           setTimeout(tick, 1000);
