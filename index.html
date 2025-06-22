@@ -160,7 +160,11 @@
                     <div class="row h-100 align-items-center g-2">
                       <div class="col-md-4 mb-3 mb-md-0 h-100">
                         <div class="card card-span h-100 text-white"><img height="272" src="assets/img/mercure.jpg" alt="..." />
-                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
+                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2">
+  <i class="fas fa-clock me-1"></i>
+  <span class="countdown" data-time="20:04:32:21">20:04:32:21</span>
+</span>
+</span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
                           <div class="card-body ps-0">
                             <h5 class="fw-bold text-1000 mb-4 text-truncate">Hotel Mercure</h5>
                             <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Samarinda</span><span class="text-800 fs--1 me-2"></div>
@@ -171,7 +175,11 @@
                       </div>
                       <div class="col-md-4 mb-3 mb-md-0 h-100">
                         <div class="card card-span h-100 text-white"><img height="272" src="assets/img/midtown.jpg" alt="..." />
-                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
+                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2">
+  <i class="fas fa-clock me-1"></i>
+  <span class="countdown" data-time="1:00:32:21">1:00:32:00</span>
+</span>
+</span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
                           <div class="card-body ps-0">
                             <h5 class="fw-bold text-1000 mb-4 text-truncate">Midtown Hotel Samarinda</h5>
                             <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Samarinda</span><span class="text-800 fs--1 me-2"></div>
@@ -182,7 +190,11 @@
                       </div>
                       <div class="col-md-4 mb-3 mb-md-0 h-100">
                         <div class="card card-span h-100 text-white"><img height="272" src="assets/img/botanic.jpg" alt="..." />
-                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
+                          <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2">
+  <i class="fas fa-clock me-1"></i>
+  <span class="countdown" data-time="0:01:00:00">0:01:00:00</span>
+</span>
+</span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
                           <div class="card-body ps-0">
                             <h5 class="fw-bold text-1000 mb-4 text-truncate">Hotel Botanic Balikpapan</h5>
                             <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Balikpapan</span><span class="text-800 fs--1 me-2"></span></div>
@@ -461,6 +473,29 @@ document.addEventListener("DOMContentLoaded", function() {
     duration: 800, 
     once: false    
   });
+</script>
+<script>
+  function countdownTimer() {
+    const elements = document.querySelectorAll('.countdown');
+    elements.forEach(el => {
+      let [d, h, m, s] = el.getAttribute('data-time').split(':').map(Number);
+      function tick() {
+        s--; 
+        if (s < 0) { s = 59; m--; }
+        if (m < 0) { m = 59; h--; }
+        if (h < 0) { h = 23; d--; }
+        if (d < 0) {
+          el.textContent = "Selesai"; 
+        } else {
+          el.textContent = [d, h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
+          setTimeout(tick, 1000);
+        }
+      }
+      tick();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", countdownTimer);
 </script>
 
 </html>
